@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todolist</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="app">
+        <div class="form-group">
+          <h1>Todo List</h1>
+          <input
+            type="text"
+            name="todo"
+            id="todo"
+            class="form-control"
+            placeholder="What To Do..."
+            v-model="todo"
+            @keyup.enter="addTodo"
+          />
+          <button
+            type="button"
+            class="btn btn-primary"
+            style="margin-top: 8px;"
+            @click="addTodo()"
+          >
+            Add
+          </button>
+        </div>
+
+        <table v-if="todos.length > 0">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Todo</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody v-for="(todo, index) in todos" :key="index">
+            <td scope="row">{{index+1}}</td>
+            <td>{{todo}}</td>
+            <td>
+              <button class="btn btn-danger" @click="deleteTodo(index)">
+                Delete
+              </button>
+            </td>
+          </tbody>
+        </table>
+        <h3 v-else>Empty Data</h3>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
